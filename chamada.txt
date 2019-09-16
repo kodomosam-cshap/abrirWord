@@ -1,0 +1,17 @@
+private void OrçamentoToolStripMenuItem2_Click(object sender, EventArgs e)
+{
+	try
+	{
+		PreencherWord clsWord = new PreencherWord();
+		//clsWord.PrencherPorReplace(Application.StartupPath + @"\\teste.docx");
+
+		clsWord.PrencherPorReplace(@"C:\Users\kodom\source\repos\Oficina\Oficina\bin\Debug\teste.docx");
+
+		MessageBox.Show("Orçamento gerado com sucesso");
+	}
+	catch (Exception ex)
+	{
+
+		MessageBox.Show("" + ex.ToString());
+	}
+}

@@ -1,0 +1,83 @@
+using Microsoft.Office.Interop.Word;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Word = Microsoft.Office.Interop;
+
+namespace Oficina
+{
+    class PreencherWord
+    {
+
+        public void PrencherPorReplace(string CaminhoDocMatriz)
+        {
+
+            object missing = System.Reflection.Missing.Value;
+
+            Word.Word.Application oApp = new Word.Word.Application();
+
+            object template = CaminhoDocMatriz;
+
+            Word.Word.Document oDoc = oApp.Documents.Add(ref template, ref missing, ref missing, ref missing);
+
+            Word.Word.Range oRng = oDoc.Range(ref missing, ref missing);
+
+            object FindText = "prmCor";
+            object ReplaceWith = "azulhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+            object MatchWholeWord = true;
+            object Forward = false;
+
+            oRng.Find.Execute(ref FindText, ref missing, ref MatchWholeWord, ref missing, ref missing,
+                                ref missing, ref Forward, ref missing, ref missing, ref ReplaceWith,
+                                ref missing, ref missing, ref missing, ref missing, ref missing);
+
+
+            oRng = oDoc.Range(ref missing, ref missing);
+
+            FindText = "prmModelo";
+            ReplaceWith = "Pajeroxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
+            oRng.Find.Execute(ref FindText, ref missing, ref MatchWholeWord, ref missing, ref missing,
+                                ref missing, ref Forward, ref missing, ref missing, ref ReplaceWith,
+                                ref missing, ref missing, ref missing, ref missing, ref missing);
+
+
+            oRng = oDoc.Range(ref missing, ref missing);
+
+            FindText = "prmREC";
+            ReplaceWith = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+            ReplaceWith += "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+            ReplaceWith += "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+            ReplaceWith += "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
+            oRng.Find.Execute(ref FindText, ref missing, ref MatchWholeWord, ref missing, ref missing,
+                                ref missing, ref Forward, ref missing, ref missing, ref ReplaceWith,
+                                ref missing, ref missing, ref missing, ref missing, ref missing);
+
+
+
+            //oApp.Application.PrintPreview = true;
+
+            string docOrigem = @"C:\Users\kodom\source\repos\Oficina\Oficina\bin\Debug\teste.docx";
+
+            string pdfSaida = @"C:\Users\kodom\source\repos\Oficina\Oficina\bin\Debug\saida.pdf";
+            
+            //oDoc = oApp.Documents.Open(docOrigem);
+
+            oDoc.ExportAsFixedFormat(pdfSaida, WdExportFormat.wdExportFormatPDF);
+                                  
+
+            // Fecha a aplicação e o documento
+            //oApp.Quit();
+            oDoc.Close();
+
+            oApp.Visible = false;
+
+
+
+        }
+
+    }
+}
